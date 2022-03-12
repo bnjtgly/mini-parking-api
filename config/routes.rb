@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :users, param: :user_id, only: %i[index show update create destroy]
       resources :parking_complex, param: :parking_complex_id, only: %i[index show update create destroy]
-      # resources :parking_slots, param: :parking_slot_id, only: %i[index]
+      resources :parking_slots, param: :parking_slot_id, only: %i[index show]
     end
   end
 
