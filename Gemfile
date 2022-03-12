@@ -47,6 +47,7 @@ group :development do
 end
 
 # added gems
+gem 'audited'
 gem 'awesome_print'
 gem 'cancancan'
 gem 'devise'

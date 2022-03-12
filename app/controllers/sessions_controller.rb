@@ -1,4 +1,5 @@
 class SessionsController < Devise::SessionsController
+  include Services::GlobalRefreshToken
   respond_to :json
 
   def create
@@ -15,7 +16,17 @@ class SessionsController < Devise::SessionsController
 
   def respond_with(_resource, _opts = {})
     @token = request.env['warden-jwt_auth.token']
-    render json: { message: 'You are logged in.', access_token: @token }, status: :ok
+    data = if current_user.api_client.name.eql?('Mini Parking Admin') || current_user.api_client.name.eql?('Mini Parking Web')
+             # WEB. Refresh token is needed for nuxt.
+             { message: 'You are logged in.', access_token: @token, refresh_token: login_refresh_token(@token) }
+           else
+             # Mobile.
+             { message: 'You are logged in.', access_token: @token }
+           end
+
+    render json: data, status: :ok
+    # @token = request.env['warden-jwt_auth.token']
+    # render json: { message: 'You are logged in.', access_token: @token }, status: :ok
   end
 
   def respond_to_on_destroy
