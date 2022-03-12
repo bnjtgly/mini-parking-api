@@ -1,4 +1,4 @@
-# SimpleRent Tenant Application API
+# Mini Park API
 
 ## Prerequisites
 [![Ruby Style Guide](https://img.shields.io/badge/ruby-3.1.0-brightgreen)](https://rubystyle.guide)
