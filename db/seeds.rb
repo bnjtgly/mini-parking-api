@@ -69,6 +69,12 @@ parking_slot_l = ParkingSlot.create(parking_complex_id: parking_complex1.id, nam
                                       east: 20,
                                       west: 30
                                     })
+parking_slot_l2 = ParkingSlot.create(parking_complex_id: parking_complex1.id, name: 'LP-2', parking_slot_type_id: parking_slot_type3.id, price: 100.0,
+                                    entry_point_distance: {
+                                      north: 15,
+                                      east: 25,
+                                      west: 335
+                                    })
 
 customer = Customer.create(vehicle_type_id: vehicle_type1.id, complete_name: 'Adam Smith', plate_number: 'APL-1207')
 
