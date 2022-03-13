@@ -1,6 +1,5 @@
 json.data do
   json.user do
-    json.user_id @customer.id
     json.customer_id @customer.id
     json.vehicle_type @customer.vehicle_type_ref.display
     json.complete_name @customer.complete_name

@@ -1,5 +1,6 @@
 class Invoice < ApplicationRecord
   belongs_to :customer_parking
+  belongs_to :customer
 
   # Sub Entities Association
   # List all sub_entities columns in users table.

@@ -58,26 +58,3 @@ class Api::V1::CreateCustomerParking
       (Time.zone.now - @customer_parking.valid_thru) / 1.hour <= 1
   end
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

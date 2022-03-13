@@ -52,6 +52,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_12_020703) do
     t.uuid "parking_status_id"
     t.boolean "is_returnee", default: false, null: false
     t.integer "current_flat_rate", default: 3, null: false
+    t.integer "accumulated_hours", default: 0, null: false
     t.datetime "valid_from", default: -> { "now()" }, null: false
     t.datetime "valid_thru"
     t.datetime "created_at", null: false
@@ -89,11 +90,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_12_020703) do
 
   create_table "invoices", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "customer_parking_id", null: false
+    t.uuid "customer_id", null: false
     t.uuid "transaction_status_id"
-    t.integer "parked_hours"
-    t.float "parking_fee"
+    t.boolean "is_flatrate_settled", default: false, null: false
+    t.integer "parked_hours", default: 0, null: false
+    t.float "parking_fee", default: 0.0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_invoices_on_customer_id"
     t.index ["customer_parking_id"], name: "index_invoices_on_customer_parking_id"
     t.index ["transaction_status_id"], name: "index_invoices_on_transaction_status_id"
   end
@@ -176,6 +180,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_12_020703) do
   add_foreign_key "customers", "sub_entities", column: "vehicle_type_id"
   add_foreign_key "entry_points", "parking_complexes"
   add_foreign_key "invoices", "customer_parkings"
+  add_foreign_key "invoices", "customers"
   add_foreign_key "invoices", "sub_entities", column: "transaction_status_id"
   add_foreign_key "parking_slots", "parking_complexes"
   add_foreign_key "parking_slots", "sub_entities", column: "parking_slot_status_id"

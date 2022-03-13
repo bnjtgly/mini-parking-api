@@ -6,6 +6,7 @@ class CreateCustomerParkings < ActiveRecord::Migration[7.0]
       t.references :parking_status, references: :sub_entities, foreign_key: { to_table: :sub_entities }, type: :uuid
       t.boolean :is_returnee, null: false, default: false
       t.integer :current_flat_rate, null: false, default: 3
+      t.integer :accumulated_hours, null: false, default: 0
       t.datetime :valid_from, null: false, default: -> { 'NOW()' }
       t.datetime :valid_thru
 

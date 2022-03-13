@@ -18,5 +18,15 @@ class AdminApi::V1::CustomersController < ApplicationController
   rescue ActiveRecord::RecordNotFound
     render json: { error: { customer_id: ['Not Found.'] } }, status: :not_found
   end
+
+  # POST /admin_api/v1/customers
+  def create
+    interact = AdminApi::V1::CreateCustomer.call(data: params)
+    if interact.success?
+      @customer = interact.customer
+    else
+      render json: { error: interact.error }, status: 422
+    end
+  end
 end
 
