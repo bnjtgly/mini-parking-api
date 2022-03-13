@@ -1,6 +1,7 @@
 json.data do
   json.parking_complex do
     json.total_parking_spaces @parking_complex.count
+    json.total_entry_points @entry_points.count
   end
   json.parking_slots do
     json.total_parking_slots @parking_slots.count

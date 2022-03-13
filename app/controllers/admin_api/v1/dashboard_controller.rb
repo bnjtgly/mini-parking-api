@@ -5,6 +5,7 @@ class AdminApi::V1::DashboardController < ApplicationController
   # GET /admin_api/v1/dashboard
   def index
     @parking_complex = ParkingComplex.all.load_async
+    @entry_points = EntryPoint.all.load_async
     @parking_slots = ParkingSlot.all.load_async
     @customer_parkings = CustomerParking.all.load_async
     @invoices = Invoice.all.load_async
