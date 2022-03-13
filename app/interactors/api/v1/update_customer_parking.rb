@@ -25,7 +25,8 @@ class Api::V1::UpdateCustomerParking
   end
 
   def build
-    park_out_time = Time.now
+    # park_out_time = Time.now
+    park_out_time = payload[:valid_thru] ? Time.zone.parse(payload[:valid_thru]).utc : Time.now.utc
     parked_hours = (park_out_time - @customer_parking.valid_from) / 1.hour
     parked_hours = parked_hours.ceil
     current_flat_rate = @customer_parking.current_flat_rate
@@ -47,5 +48,12 @@ class Api::V1::UpdateCustomerParking
     end
 
     @customer_parking.create_invoice(transaction_status_id: @ts_settled.id, parked_hours: parked_hours, parking_fee: total_fee)
+  end
+
+  def payload
+    {
+      customer_id: data[:parking][:customer_id],
+      valid_thru: data[:parking][:valid_thru]
+    }
   end
 end

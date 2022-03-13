@@ -13,6 +13,7 @@ json.data do
         json.valid_thru data.customer_parking.valid_thru
       end
       json.transaction_status data.transaction_status_ref.display
+      json.is_flatrate_settled data.is_flatrate_settled
       json.parked_hours data.parked_hours
       json.parking_fee data.parking_fee
     end

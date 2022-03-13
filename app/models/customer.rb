@@ -1,5 +1,6 @@
 class Customer < ApplicationRecord
   has_many :customer_parkings, dependent: :destroy
+  has_many :invoices, dependent: :destroy
 
   # Sub Entities Association
   # List all sub_entities columns in users table.

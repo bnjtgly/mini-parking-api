@@ -7,7 +7,7 @@ class Api::V1::CustomerParkingsController < ApplicationController
     @customer_parkings = CustomerParking.all
   end
 
-  # POST /api/addresses
+  # POST /api/customer_parkings
   def create
     interact = Api::V1::CreateCustomerParking.call(data: params)
 
@@ -19,7 +19,7 @@ class Api::V1::CustomerParkingsController < ApplicationController
     end
   end
 
-  # POST /api/addresses
+  # POST /api/customer_parkings
   def update_parking
     interact = Api::V1::UpdateCustomerParking.call(data: params)
 

@@ -22,9 +22,9 @@ UserRole.create(user_id: user.id, role_id: role_user.id)
 
 # Entities and Sub Entities
 parking_slot = Entity.create(entity_number: 1001, entity_name: 'Parking Slot Type', entity_def: 'Type of parking slot.')
-parking_slot_type1 = SubEntity.create(sort_order: '100', entity_id: parking_slot.id, display: 'Small', value_str: 'small')
-parking_slot_type2 = SubEntity.create(sort_order: '200', entity_id: parking_slot.id, display: 'Medium', value_str: 'medium')
-parking_slot_type3 = SubEntity.create(sort_order: '300', entity_id: parking_slot.id, display: 'Large', value_str: 'large')
+parking_slot_type1 = SubEntity.create(sort_order: '100', entity_id: parking_slot.id, display: 'Small', value_str: 'small', metadata: { price: 20.0 })
+parking_slot_type2 = SubEntity.create(sort_order: '200', entity_id: parking_slot.id, display: 'Medium', value_str: 'medium', metadata: { price: 60.0 })
+parking_slot_type3 = SubEntity.create(sort_order: '300', entity_id: parking_slot.id, display: 'Large', value_str: 'large', metadata: { price: 100.0 })
 
 vehicle = Entity.create(entity_number: 1101, entity_name: 'Vehicle Type', entity_def: 'Type of vehicle.')
 vehicle_type1 = SubEntity.create(sort_order: '100', entity_id: vehicle.id, display: 'Small', value_str: 'small')
@@ -78,4 +78,4 @@ parking_slot_l2 = ParkingSlot.create(parking_complex_id: parking_complex1.id, na
 
 customer = Customer.create(vehicle_type_id: vehicle_type1.id, complete_name: 'Adam Smith', plate_number: 'APL-1207')
 
-customer_parking = CustomerParking.create(customer_id: customer.id, parking_slot_id: parking_slot_l.id, parking_status_id: parking_status1.id)
+customer_parking = CustomerParking.create(customer_id: customer.id, parking_slot_id: parking_slot_l.id, parking_status_id: parking_status1.id, valid_from: '2020-03-01 05:00:00', valid_thru: '2020-03-02 05:00:00')
