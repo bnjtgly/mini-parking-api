@@ -1,6 +1,7 @@
 class ParkingSlot < ApplicationRecord
   belongs_to :parking_complex
   has_one :customer_parking, dependent: :destroy
+  has_many :slot_entrypoints, dependent: :destroy
 
   # Sub Entities Association
   # List all sub_entities columns in users table.

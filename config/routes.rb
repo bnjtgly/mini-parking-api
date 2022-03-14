@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       resources :customers, param: :customer_id, only: %i[index show update create destroy]
       resources :customer_parkings, only: %i[index create]
       resources :parking_complex, param: :parking_complex_id, only: %i[index show update create destroy]
+      resources :entry_points, param: :entry_point_id, only: %i[index]
       resources :parking_slots, param: :parking_slot_id, only: %i[index show create]
       resources :entities, only: [:index]
       resources :sub_entities, only: [:index]
@@ -18,6 +19,8 @@ Rails.application.routes.draw do
       resources :dashboard, only: [:index]
 
       post 'customer_parkings/checkout', to: 'customer_parkings#checkout'
+
+      get 'customer_parkings/find_parking/:customer_id', to: 'customer_parkings#find_parking'
     end
   end
 

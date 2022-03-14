@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_12_020703) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_13_230719) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -122,8 +122,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_12_020703) do
     t.uuid "parking_slot_type_id"
     t.uuid "parking_slot_status_id"
     t.string "name"
-    t.jsonb "entry_point_distance"
-    t.float "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["parking_complex_id"], name: "index_parking_slots_on_parking_complex_id"
@@ -137,6 +135,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_12_020703) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["role_name"], name: "index_roles_on_role_name", unique: true
+  end
+
+  create_table "slot_entrypoints", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "parking_slot_id", null: false
+    t.uuid "entry_point_id", null: false
+    t.float "distance"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["entry_point_id"], name: "index_slot_entrypoints_on_entry_point_id"
+    t.index ["parking_slot_id"], name: "index_slot_entrypoints_on_parking_slot_id"
   end
 
   create_table "sub_entities", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -185,6 +193,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_12_020703) do
   add_foreign_key "parking_slots", "parking_complexes"
   add_foreign_key "parking_slots", "sub_entities", column: "parking_slot_status_id"
   add_foreign_key "parking_slots", "sub_entities", column: "parking_slot_type_id"
+  add_foreign_key "slot_entrypoints", "entry_points"
+  add_foreign_key "slot_entrypoints", "parking_slots"
   add_foreign_key "sub_entities", "entities"
   add_foreign_key "user_roles", "roles"
   add_foreign_key "user_roles", "users"
