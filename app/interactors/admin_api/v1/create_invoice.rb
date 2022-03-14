@@ -25,7 +25,12 @@ class AdminApi::V1::CreateInvoice
     customer_invoice = Invoice.where(customer_id: context.customer_parking.customer_id).first
     context.fail!(error: { customer_parking_id: ['Not found.'] }) unless @customer_parking
 
-    is_flatrate_settled = customer_invoice ? true : false
+    # is_flatrate_settled = customer_invoice ? true : false
+    if customer_invoice && context.customer_parking.is_returnee
+      is_flatrate_settled = true
+    else
+      is_flatrate_settled = false
+    end
 
     @invoice = Invoice.new(payload)
     Invoice.transaction do

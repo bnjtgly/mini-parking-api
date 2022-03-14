@@ -11,11 +11,11 @@ class AdminApi::V1::ParkingComplexController < ApplicationController
   # GET /admin_api/v1/parking_complex/1
   def show
     @parking_complex = ParkingComplex.find(params[:parking_complex_id])
-    # @slot_type_count = @parking_complex.select(:parking_slot_type_ref.display).parking_slots.group(:parking_slot_type_ref.display).count
     @slot_type_count = @parking_complex.parking_slots.select(:id, :parking_slot_type_id).group(:parking_slot_type_id).count(:parking_slot_type_id)
-    @slot_type_count = get_slot_type_count
 
-    ap @slot_type_count
+    @parking_complex = @parking_complex.parking_slots.slot_entrypoints.where(name: params[:name]) unless params[:name].blank?
+
+    @slot_type_count = get_slot_type_count
 
   rescue ActiveRecord::RecordNotFound
     render json: { error: { parking_complex_id: ['Not Found.'] } }, status: :not_found

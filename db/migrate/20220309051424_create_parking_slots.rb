@@ -5,8 +5,6 @@ class CreateParkingSlots < ActiveRecord::Migration[7.0]
       t.references :parking_slot_type, references: :sub_entities, foreign_key: { to_table: :sub_entities}, type: :uuid
       t.references :parking_slot_status, references: :sub_entities, foreign_key: { to_table: :sub_entities}, type: :uuid
       t.string :name
-      t.jsonb :entry_point_distance
-      t.float :price
 
       t.timestamps
     end

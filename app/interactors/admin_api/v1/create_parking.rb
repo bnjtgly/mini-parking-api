@@ -52,7 +52,7 @@ class AdminApi::V1::CreateParking
     {
       customer_id: data[:parking][:customer_id],
       parking_slot_id: data[:parking][:parking_slot_id],
-      parking_status_id: data[:parking][:parking_status_id],
+      parking_status_id: @ps_parked.id,
       valid_from: data[:parking][:valid_from],
       valid_thru: data[:parking][:valid_thru]
     }

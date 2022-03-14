@@ -51,31 +51,36 @@ entry_point1 = EntryPoint.create(parking_complex_id: parking_complex1.id, name: 
 entry_point2 = EntryPoint.create(parking_complex_id: parking_complex1.id, name: 'east')
 entry_point3 = EntryPoint.create(parking_complex_id: parking_complex1.id, name: 'west')
 
-parking_slot_s = ParkingSlot.create(parking_complex_id: parking_complex1.id, name: 'SP-1', parking_slot_type_id: parking_slot_type1.id, price: 20.0,
-                                    entry_point_distance: {
-                                      north: 10,
-                                      east: 20,
-                                      west: 30
-                                    })
-parking_slot_m = ParkingSlot.create(parking_complex_id: parking_complex1.id, name: 'MP-1', parking_slot_type_id: parking_slot_type2.id, price: 60.0,
-                                    entry_point_distance: {
-                                      north: 10,
-                                      east: 20,
-                                      west: 30
-                                    })
-parking_slot_l = ParkingSlot.create(parking_complex_id: parking_complex1.id, name: 'LP-1', parking_slot_type_id: parking_slot_type3.id, price: 100.0,
-                                    entry_point_distance: {
-                                      north: 10,
-                                      east: 20,
-                                      west: 30
-                                    })
-parking_slot_l2 = ParkingSlot.create(parking_complex_id: parking_complex1.id, name: 'LP-2', parking_slot_type_id: parking_slot_type3.id, price: 100.0,
-                                    entry_point_distance: {
-                                      north: 15,
-                                      east: 25,
-                                      west: 335
-                                    })
+parking_slot_s = ParkingSlot.create(parking_complex_id: parking_complex1.id, name: 'SP-1', parking_slot_type_id: parking_slot_type1.id, parking_slot_status_id: parking_slot_status1.id)
+parking_slot_m = ParkingSlot.create(parking_complex_id: parking_complex1.id, name: 'MP-1', parking_slot_type_id: parking_slot_type2.id, parking_slot_status_id: parking_slot_status1.id)
+parking_slot_l = ParkingSlot.create(parking_complex_id: parking_complex1.id, name: 'LP-1', parking_slot_type_id: parking_slot_type3.id, parking_slot_status_id: parking_slot_status2.id)
 
-customer = Customer.create(vehicle_type_id: vehicle_type1.id, complete_name: 'Adam Smith', plate_number: 'APL-1207')
+parking_slot_s2 = ParkingSlot.create(parking_complex_id: parking_complex1.id, name: 'SP-2', parking_slot_type_id: parking_slot_type1.id, parking_slot_status_id: parking_slot_status1.id)
+parking_slot_m2 = ParkingSlot.create(parking_complex_id: parking_complex1.id, name: 'MP-2', parking_slot_type_id: parking_slot_type2.id, parking_slot_status_id: parking_slot_status2.id)
+parking_slot_l2 = ParkingSlot.create(parking_complex_id: parking_complex1.id, name: 'LP-2', parking_slot_type_id: parking_slot_type3.id, parking_slot_status_id: parking_slot_status1.id)
 
-customer_parking = CustomerParking.create(customer_id: customer.id, parking_slot_id: parking_slot_l.id, parking_status_id: parking_status1.id, valid_from: '2020-03-01 05:00:00', valid_thru: '2020-03-02 05:00:00')
+SlotEntrypoint.create(entry_point_id: entry_point1.id, parking_slot_id: parking_slot_s.id, distance: 1.0)
+SlotEntrypoint.create(entry_point_id: entry_point2.id, parking_slot_id: parking_slot_s.id, distance: 2.0)
+SlotEntrypoint.create(entry_point_id: entry_point3.id, parking_slot_id: parking_slot_s.id, distance: 3.0)
+
+SlotEntrypoint.create(entry_point_id: entry_point1.id, parking_slot_id: parking_slot_m.id, distance: 1.0)
+SlotEntrypoint.create(entry_point_id: entry_point2.id, parking_slot_id: parking_slot_m.id, distance: 2.0)
+SlotEntrypoint.create(entry_point_id: entry_point3.id, parking_slot_id: parking_slot_m.id, distance: 3.0)
+
+SlotEntrypoint.create(entry_point_id: entry_point1.id, parking_slot_id: parking_slot_l.id, distance: 1.0)
+SlotEntrypoint.create(entry_point_id: entry_point2.id, parking_slot_id: parking_slot_l.id, distance: 2.0)
+SlotEntrypoint.create(entry_point_id: entry_point3.id, parking_slot_id: parking_slot_l.id, distance: 3.0)
+
+SlotEntrypoint.create(entry_point_id: entry_point1.id, parking_slot_id: parking_slot_s2.id, distance: 1.2)
+SlotEntrypoint.create(entry_point_id: entry_point2.id, parking_slot_id: parking_slot_s2.id, distance: 2.2)
+SlotEntrypoint.create(entry_point_id: entry_point3.id, parking_slot_id: parking_slot_s2.id, distance: 3.2)
+
+SlotEntrypoint.create(entry_point_id: entry_point1.id, parking_slot_id: parking_slot_m2.id, distance: 1.2)
+SlotEntrypoint.create(entry_point_id: entry_point2.id, parking_slot_id: parking_slot_m2.id, distance: 2.2)
+SlotEntrypoint.create(entry_point_id: entry_point3.id, parking_slot_id: parking_slot_m2.id, distance: 3.2)
+
+SlotEntrypoint.create(entry_point_id: entry_point1.id, parking_slot_id: parking_slot_l2.id, distance: 1.2)
+SlotEntrypoint.create(entry_point_id: entry_point2.id, parking_slot_id: parking_slot_l2.id, distance: 2.2)
+SlotEntrypoint.create(entry_point_id: entry_point3.id, parking_slot_id: parking_slot_l2.id, distance: 3.2)
+
+customer = Customer.create(vehicle_type_id: vehicle_type3.id, complete_name: 'Adam Smith', plate_number: 'APL-1207')
