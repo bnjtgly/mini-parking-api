@@ -24,6 +24,20 @@ json.data do
           json.parking_slot_type data.parking_slot_type_ref.display
           json.parking_slot_status data.parking_slot_status_ref.display
           json.slot_name data.name
+          json.customer_details do
+            if data.customer_parking
+              json.customer_parking_id data.customer_parking.id
+              json.customer_id data.customer_parking.customer.id
+              json.customer_name data.customer_parking.customer.complete_name
+              json.plate_number data.customer_parking.customer.plate_number
+              json.vehicle_type data.customer_parking.customer.vehicle_type_ref.display
+              json.is_returnee data.customer_parking.is_returnee
+              json.current_flat_rate data.customer_parking.current_flat_rate
+              json.accumulated_hours data.customer_parking.accumulated_hours
+            else
+              json.null!
+            end
+          end
         end
       else
         json.null!

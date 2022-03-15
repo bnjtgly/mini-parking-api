@@ -19,12 +19,15 @@ class AdminApi::V1::CustomerParkingsController < ApplicationController
                                     .where(sub_entities: { sort_order: @customer_vehicle_type..Float::INFINITY })
                                     .where(parking_slot_status_id: @available_status.id)
                                     .order('slot_entrypoints.distance').first
+      @slot_price = @available_slots.parking_slot_type_ref.metadata.to_h if @available_slots
+      @slot_price = @slot_price['price'].to_f if @slot_price
+      @entry_point_distance = @available_slots.slot_entrypoints.first.distance if @slot_price
     end
-
     if params[:entry_point].blank? || params[:parking_complex].blank?
-      render json: { error: 'Please verify the Parking Complex and Entry point' }
+      render json: { error: 'Please verify the Parking Complex and Entry point.' }
     else
-      render json: { customer: @customer, available_parking_slot: {id: @available_slots.id, name: @available_slots.name } }
+      # render json: { customer: @customer, available_parking_slot: {id: @available_slots.id, name: @available_slots.name } }
+      render 'admin_api/v1/parking_slots/find_parking'
     end
   end
 
@@ -45,7 +48,7 @@ class AdminApi::V1::CustomerParkingsController < ApplicationController
 
     if interact.success?
       @customer_parking = interact.customer_parking.reload
-      render json: { message: 'Record updated.', data: {customer_parking: @customer_parking, invoice: @customer_parking.invoice} }
+      # render json: { message: 'Record updated.', data: {customer_parking: @customer_parking, invoice: @customer_parking.invoice} }
     else
       render json: { error: interact.error }, status: 422
     end
