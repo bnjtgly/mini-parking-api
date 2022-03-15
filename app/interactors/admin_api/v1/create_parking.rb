@@ -14,13 +14,16 @@ class AdminApi::V1::CreateParking
   private
 
   def init
-    @customer_parking = CustomerParking.where(customer_id: data[:parking][:customer_id]).order(created_at: :desc).first
-    @parking_status = Entity.where(entity_number: 1301).load_async.first
-    @ps_parked = @parking_status.sub_entities.where(value_str: 'parked').first
+    @customer_parking = CustomerParking.where(customer_id: data[:parking][:customer_id]).order(created_at: :desc).load_async.first
+    @not_available = SubEntity.where(value_str: 'not available').load_async.first
+    @ps_parked = SubEntity.where(value_str: 'parked').load_async.first
+
     context.fail!(error: { message: ['Please try again. Un-park your vehicle first.'] }) if @customer_parking && @customer_parking.valid_thru.nil?
   end
 
   def build
+    @parking_slot = ParkingSlot.where(id: payload[:parking_slot_id]).first
+
     if @customer_parking && is_returning_vehicle
       @customer_parking = CustomerParking.new(customer_id: @customer_parking.customer_id,
                                               is_returnee: true,
@@ -35,7 +38,11 @@ class AdminApi::V1::CreateParking
     CustomerParking.transaction do
       @customer_parking.valid_from = payload[:valid_from] ? Time.zone.parse(payload[:valid_from]).utc : Time.now.utc
       @customer_parking.save
+
+      @parking_slot.update(parking_slot_status_id: @not_available.id)
     end
+
+
 
     context.customer_parking = @customer_parking
   end

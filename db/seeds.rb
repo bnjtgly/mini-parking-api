@@ -53,10 +53,10 @@ entry_point3 = EntryPoint.create(parking_complex_id: parking_complex1.id, name: 
 
 parking_slot_s = ParkingSlot.create(parking_complex_id: parking_complex1.id, name: 'SP-1', parking_slot_type_id: parking_slot_type1.id, parking_slot_status_id: parking_slot_status1.id)
 parking_slot_m = ParkingSlot.create(parking_complex_id: parking_complex1.id, name: 'MP-1', parking_slot_type_id: parking_slot_type2.id, parking_slot_status_id: parking_slot_status1.id)
-parking_slot_l = ParkingSlot.create(parking_complex_id: parking_complex1.id, name: 'LP-1', parking_slot_type_id: parking_slot_type3.id, parking_slot_status_id: parking_slot_status2.id)
+parking_slot_l = ParkingSlot.create(parking_complex_id: parking_complex1.id, name: 'LP-1', parking_slot_type_id: parking_slot_type3.id, parking_slot_status_id: parking_slot_status1.id)
 
 parking_slot_s2 = ParkingSlot.create(parking_complex_id: parking_complex1.id, name: 'SP-2', parking_slot_type_id: parking_slot_type1.id, parking_slot_status_id: parking_slot_status1.id)
-parking_slot_m2 = ParkingSlot.create(parking_complex_id: parking_complex1.id, name: 'MP-2', parking_slot_type_id: parking_slot_type2.id, parking_slot_status_id: parking_slot_status2.id)
+parking_slot_m2 = ParkingSlot.create(parking_complex_id: parking_complex1.id, name: 'MP-2', parking_slot_type_id: parking_slot_type2.id, parking_slot_status_id: parking_slot_status1.id)
 parking_slot_l2 = ParkingSlot.create(parking_complex_id: parking_complex1.id, name: 'LP-2', parking_slot_type_id: parking_slot_type3.id, parking_slot_status_id: parking_slot_status1.id)
 
 SlotEntrypoint.create(entry_point_id: entry_point1.id, parking_slot_id: parking_slot_s.id, distance: 1.0)
