@@ -15,8 +15,11 @@ class AdminApi::V1::CreateParkingSlot
   private
 
   def build
+    slot_available = SubEntity.where(value_str: 'available').first
+
     @parking_slot = ParkingSlot.new(payload)
     ParkingSlot.transaction do
+      @parking_slot.parking_slot_status_id = slot_available.id
       @parking_slot.save
     end
 
@@ -35,10 +38,7 @@ class AdminApi::V1::CreateParkingSlot
     {
       parking_complex_id: data[:parking_slot][:parking_complex_id],
       parking_slot_type_id: data[:parking_slot][:parking_slot_type_id],
-      parking_slot_status_id: data[:parking_slot][:parking_slot_status_id],
-      name: data[:parking_slot][:name],
-      entry_point_distance: data[:parking_slot][:entry_point_distance],
-      price: data[:parking_slot][:price]
+      name: data[:parking_slot][:name]
     }
   end
 end

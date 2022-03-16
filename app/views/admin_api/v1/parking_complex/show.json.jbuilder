@@ -25,7 +25,8 @@ json.data do
           json.parking_slot_status data.parking_slot_status_ref.display
           json.slot_name data.name
           json.customer_details do
-            if data.customer_parking
+            if data.customer_parking && data.parking_slot_status_ref.display.eql?('Not Available')
+              json.test data.customer_parking.id
               json.customer_parking_id data.customer_parking.id
               json.customer_id data.customer_parking.customer.id
               json.customer_name data.customer_parking.customer.complete_name

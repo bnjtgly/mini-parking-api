@@ -12,6 +12,7 @@ module Helper
     VALID_DATE_MESSAGE = 'Please enter valid date. Date must be YYYY-MM-DD.'
     VALID_BOOLEAN_MESSAGE = 'Please enter a valid value. Must be true or false'
     VALID_THRU_MESSAGE = 'Valid thru date must be greater than current date and time.'
+    VALID_DISTANCE = 'Please enter a valid distance. (integer or float)'
     USER_ID_NOT_FOUND = 'We do not recognize your Account. Please try again.'
 
     DOMAIN_STATUSES = ['Active', 'Coming Soon', 'Disabled'].freeze

@@ -1,6 +1,7 @@
 class ParkingSlot < ApplicationRecord
   belongs_to :parking_complex
-  has_one :customer_parking, dependent: :destroy
+  # has_one :customer_parking, dependent: :destroy
+  has_one :customer_parking, -> { where(valid_thru: nil) }, class_name: 'CustomerParking'
   has_many :slot_entrypoints, dependent: :destroy
 
   # Sub Entities Association

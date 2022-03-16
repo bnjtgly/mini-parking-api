@@ -15,36 +15,37 @@ class AdminApi::V1::CreateParking
 
   def init
     @customer_parking = CustomerParking.where(customer_id: data[:parking][:customer_id]).order(created_at: :desc).load_async.first
-    @not_available = SubEntity.where(value_str: 'not available').load_async.first
     @ps_parked = SubEntity.where(value_str: 'parked').load_async.first
 
     context.fail!(error: { message: ['Please try again. Un-park your vehicle first.'] }) if @customer_parking && @customer_parking.valid_thru.nil?
   end
 
   def build
-    @parking_slot = ParkingSlot.where(id: payload[:parking_slot_id]).first
+    @not_available = SubEntity.includes(:entity).where(value_str: 'not available', entity: {entity_number: 1201}).first
+    @parking_slot = ParkingSlot.where(id: payload[:parking_slot_id]).last
+
+    ap @parking_slot
 
     if @customer_parking && is_returning_vehicle
-      @customer_parking = CustomerParking.new(customer_id: @customer_parking.customer_id,
+      @customer_parking_new = CustomerParking.new(customer_id: @customer_parking.customer_id,
                                               is_returnee: true,
                                               current_flat_rate: @customer_parking.current_flat_rate,
                                               parking_slot_id: @customer_parking.parking_slot_id,
                                               parking_status_id: @ps_parked.id,
                                               valid_from: @customer_parking.valid_from)
+      @parking_slot&.update(parking_slot_status_id: @not_available.id)
     else
-      @customer_parking = CustomerParking.new(payload)
+      @customer_parking_new = CustomerParking.new(payload)
+      @parking_slot&.update(parking_slot_status_id: @not_available.id)
     end
 
     CustomerParking.transaction do
-      @customer_parking.valid_from = payload[:valid_from] ? Time.zone.parse(payload[:valid_from]).utc : Time.now.utc
-      @customer_parking.save
-
-      @parking_slot.update(parking_slot_status_id: @not_available.id)
+      @customer_parking_new.valid_from = payload[:valid_from] ? Time.zone.parse(payload[:valid_from]).utc : Time.now.utc
+      @customer_parking_new.save
     end
 
 
-
-    context.customer_parking = @customer_parking
+    context.customer_parking = @customer_parking_new
   end
 
   def validate!
