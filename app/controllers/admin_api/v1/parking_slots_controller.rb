@@ -17,7 +17,7 @@ class AdminApi::V1::ParkingSlotsController < ApplicationController
     render json: { error: { parking_slot_id: ['Not Found.'] } }, status: :not_found
   end
 
-  # POST /admin_api/v1/arking_slot
+  # POST /admin_api/v1/parking_slot
   def create
     interact = AdminApi::V1::CreateParkingSlot.call(data: params)
     if interact.success?

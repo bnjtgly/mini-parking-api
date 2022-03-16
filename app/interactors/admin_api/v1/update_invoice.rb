@@ -36,12 +36,10 @@ class AdminApi::V1::UpdateInvoice
     misc_fee = 0 if @invoice.is_flatrate_settled
 
     total_fee = misc_fee + normal_rate(accumulated_hours, slot_price)
-    # total_fee = misc_fee + normal_rate(parked_hours, slot_price)
 
     if @customer_parking.is_returnee
       if accumulated_hours >= 1
         total_fee = misc_fee + regular_rate(accumulated_hours, slot_price)
-        # total_fee = misc_fee + regular_rate(parked_hours, slot_price)
       end
     end
 
@@ -57,7 +55,7 @@ class AdminApi::V1::UpdateInvoice
       parking_fee: total_fee
     )
 
-    context.customer_parking = @customer_parking
+    context.invoice = @invoice
   end
 
   def payload
