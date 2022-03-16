@@ -11,7 +11,7 @@ class AdminApi::V1::CreateSlotEntrypointValidator
 
 
 
-  validate :required, :parking_complex_id_exist
+  validate :required, :parking_slot_id_exist, :entry_point_id_exist, :valid_distance
 
   def submit
     init
@@ -32,9 +32,9 @@ class AdminApi::V1::CreateSlotEntrypointValidator
   end
 
   def required
-    errors.add(:parking_slot_id, REQUIRED_MESSAGE) if parking_complex_id.blank?
-    errors.add(:entry_point_id, REQUIRED_MESSAGE) if parking_slot_type_id.blank?
-    errors.add(:distance, REQUIRED_MESSAGE) if name.blank?
+    errors.add(:parking_slot_id, REQUIRED_MESSAGE) if parking_slot_id.blank?
+    errors.add(:entry_point_id, REQUIRED_MESSAGE) if entry_point_id.blank?
+    errors.add(:distance, REQUIRED_MESSAGE) if distance.blank?
   end
 
   def parking_slot_id_exist

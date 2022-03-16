@@ -63,43 +63,97 @@ parking_slot_s3 = ParkingSlot.create(parking_complex_id: parking_complex1.id, na
 parking_slot_m3 = ParkingSlot.create(parking_complex_id: parking_complex1.id, name: 'MP-3', parking_slot_type_id: parking_slot_type2.id, parking_slot_status_id: parking_slot_status1.id)
 parking_slot_l3 = ParkingSlot.create(parking_complex_id: parking_complex1.id, name: 'LP-3', parking_slot_type_id: parking_slot_type3.id, parking_slot_status_id: parking_slot_status1.id)
 
+# SlotEntrypoint.create(entry_point_id: entry_point1.id, parking_slot_id: parking_slot_s.id, distance: 1.0)
+# SlotEntrypoint.create(entry_point_id: entry_point2.id, parking_slot_id: parking_slot_s.id, distance: 2.0)
+# SlotEntrypoint.create(entry_point_id: entry_point3.id, parking_slot_id: parking_slot_s.id, distance: 3.0)
+#
+# SlotEntrypoint.create(entry_point_id: entry_point1.id, parking_slot_id: parking_slot_m.id, distance: 1.0)
+# SlotEntrypoint.create(entry_point_id: entry_point2.id, parking_slot_id: parking_slot_m.id, distance: 2.0)
+# SlotEntrypoint.create(entry_point_id: entry_point3.id, parking_slot_id: parking_slot_m.id, distance: 3.0)
+#
+# SlotEntrypoint.create(entry_point_id: entry_point1.id, parking_slot_id: parking_slot_l.id, distance: 1.0)
+# SlotEntrypoint.create(entry_point_id: entry_point2.id, parking_slot_id: parking_slot_l.id, distance: 2.0)
+# SlotEntrypoint.create(entry_point_id: entry_point3.id, parking_slot_id: parking_slot_l.id, distance: 3.0)
+#
+#
+# SlotEntrypoint.create(entry_point_id: entry_point1.id, parking_slot_id: parking_slot_s2.id, distance: 1.2)
+# SlotEntrypoint.create(entry_point_id: entry_point2.id, parking_slot_id: parking_slot_s2.id, distance: 2.2)
+# SlotEntrypoint.create(entry_point_id: entry_point3.id, parking_slot_id: parking_slot_s2.id, distance: 3.2)
+#
+# SlotEntrypoint.create(entry_point_id: entry_point1.id, parking_slot_id: parking_slot_m2.id, distance: 1.2)
+# SlotEntrypoint.create(entry_point_id: entry_point2.id, parking_slot_id: parking_slot_m2.id, distance: 2.2)
+# SlotEntrypoint.create(entry_point_id: entry_point3.id, parking_slot_id: parking_slot_m2.id, distance: 3.2)
+#
+# SlotEntrypoint.create(entry_point_id: entry_point1.id, parking_slot_id: parking_slot_l2.id, distance: 1.2)
+# SlotEntrypoint.create(entry_point_id: entry_point2.id, parking_slot_id: parking_slot_l2.id, distance: 2.2)
+# SlotEntrypoint.create(entry_point_id: entry_point3.id, parking_slot_id: parking_slot_l2.id, distance: 3.2)
+#
+#
+# SlotEntrypoint.create(entry_point_id: entry_point1.id, parking_slot_id: parking_slot_s3.id, distance: 1.3)
+# SlotEntrypoint.create(entry_point_id: entry_point2.id, parking_slot_id: parking_slot_s3.id, distance: 2.3)
+# SlotEntrypoint.create(entry_point_id: entry_point3.id, parking_slot_id: parking_slot_s3.id, distance: 3.3)
+#
+# SlotEntrypoint.create(entry_point_id: entry_point1.id, parking_slot_id: parking_slot_m3.id, distance: 1.3)
+# SlotEntrypoint.create(entry_point_id: entry_point2.id, parking_slot_id: parking_slot_m3.id, distance: 2.3)
+# SlotEntrypoint.create(entry_point_id: entry_point3.id, parking_slot_id: parking_slot_m3.id, distance: 3.3)
+#
+# SlotEntrypoint.create(entry_point_id: entry_point1.id, parking_slot_id: parking_slot_l3.id, distance: 1.3)
+# SlotEntrypoint.create(entry_point_id: entry_point2.id, parking_slot_id: parking_slot_l3.id, distance: 2.3)
+# SlotEntrypoint.create(entry_point_id: entry_point3.id, parking_slot_id: parking_slot_l3.id, distance: 3.3)
+#
+#
+
+
+
 SlotEntrypoint.create(entry_point_id: entry_point1.id, parking_slot_id: parking_slot_s.id, distance: 1.0)
+SlotEntrypoint.create(entry_point_id: entry_point1.id, parking_slot_id: parking_slot_s2.id, distance: 2.0)
+SlotEntrypoint.create(entry_point_id: entry_point1.id, parking_slot_id: parking_slot_s3.id, distance: 3.0)
+
 SlotEntrypoint.create(entry_point_id: entry_point2.id, parking_slot_id: parking_slot_s.id, distance: 2.0)
+SlotEntrypoint.create(entry_point_id: entry_point2.id, parking_slot_id: parking_slot_s2.id, distance: 1.0)
+SlotEntrypoint.create(entry_point_id: entry_point2.id, parking_slot_id: parking_slot_s3.id, distance: 3.0)
+
 SlotEntrypoint.create(entry_point_id: entry_point3.id, parking_slot_id: parking_slot_s.id, distance: 3.0)
-
-SlotEntrypoint.create(entry_point_id: entry_point1.id, parking_slot_id: parking_slot_m.id, distance: 1.0)
-SlotEntrypoint.create(entry_point_id: entry_point2.id, parking_slot_id: parking_slot_m.id, distance: 2.0)
-SlotEntrypoint.create(entry_point_id: entry_point3.id, parking_slot_id: parking_slot_m.id, distance: 3.0)
-
-SlotEntrypoint.create(entry_point_id: entry_point1.id, parking_slot_id: parking_slot_l.id, distance: 1.0)
-SlotEntrypoint.create(entry_point_id: entry_point2.id, parking_slot_id: parking_slot_l.id, distance: 2.0)
-SlotEntrypoint.create(entry_point_id: entry_point3.id, parking_slot_id: parking_slot_l.id, distance: 3.0)
+SlotEntrypoint.create(entry_point_id: entry_point3.id, parking_slot_id: parking_slot_s2.id, distance: 2.0)
+SlotEntrypoint.create(entry_point_id: entry_point3.id, parking_slot_id: parking_slot_s3.id, distance: 1.0)
 
 
-SlotEntrypoint.create(entry_point_id: entry_point1.id, parking_slot_id: parking_slot_s2.id, distance: 1.2)
-SlotEntrypoint.create(entry_point_id: entry_point2.id, parking_slot_id: parking_slot_s2.id, distance: 2.2)
-SlotEntrypoint.create(entry_point_id: entry_point3.id, parking_slot_id: parking_slot_s2.id, distance: 3.2)
+SlotEntrypoint.create(entry_point_id: entry_point1.id, parking_slot_id: parking_slot_m.id, distance: 1.1)
+SlotEntrypoint.create(entry_point_id: entry_point1.id, parking_slot_id: parking_slot_m2.id, distance: 2.1)
+SlotEntrypoint.create(entry_point_id: entry_point1.id, parking_slot_id: parking_slot_m3.id, distance: 3.1)
 
-SlotEntrypoint.create(entry_point_id: entry_point1.id, parking_slot_id: parking_slot_m2.id, distance: 1.2)
-SlotEntrypoint.create(entry_point_id: entry_point2.id, parking_slot_id: parking_slot_m2.id, distance: 2.2)
-SlotEntrypoint.create(entry_point_id: entry_point3.id, parking_slot_id: parking_slot_m2.id, distance: 3.2)
+SlotEntrypoint.create(entry_point_id: entry_point2.id, parking_slot_id: parking_slot_m.id, distance: 2.1)
+SlotEntrypoint.create(entry_point_id: entry_point2.id, parking_slot_id: parking_slot_m2.id, distance: 1.1)
+SlotEntrypoint.create(entry_point_id: entry_point2.id, parking_slot_id: parking_slot_m3.id, distance: 3.1)
 
-SlotEntrypoint.create(entry_point_id: entry_point1.id, parking_slot_id: parking_slot_l2.id, distance: 1.2)
-SlotEntrypoint.create(entry_point_id: entry_point2.id, parking_slot_id: parking_slot_l2.id, distance: 2.2)
-SlotEntrypoint.create(entry_point_id: entry_point3.id, parking_slot_id: parking_slot_l2.id, distance: 3.2)
+SlotEntrypoint.create(entry_point_id: entry_point3.id, parking_slot_id: parking_slot_m.id, distance: 3.1)
+SlotEntrypoint.create(entry_point_id: entry_point3.id, parking_slot_id: parking_slot_m2.id, distance: 2.1)
+SlotEntrypoint.create(entry_point_id: entry_point3.id, parking_slot_id: parking_slot_m3.id, distance: 1.1)
 
 
-SlotEntrypoint.create(entry_point_id: entry_point1.id, parking_slot_id: parking_slot_s3.id, distance: 1.3)
-SlotEntrypoint.create(entry_point_id: entry_point2.id, parking_slot_id: parking_slot_s3.id, distance: 2.3)
-SlotEntrypoint.create(entry_point_id: entry_point3.id, parking_slot_id: parking_slot_s3.id, distance: 3.3)
+SlotEntrypoint.create(entry_point_id: entry_point1.id, parking_slot_id: parking_slot_l.id, distance: 1.23)
+SlotEntrypoint.create(entry_point_id: entry_point1.id, parking_slot_id: parking_slot_l2.id, distance: 2.42)
+SlotEntrypoint.create(entry_point_id: entry_point1.id, parking_slot_id: parking_slot_l3.id, distance: 3.12)
 
-SlotEntrypoint.create(entry_point_id: entry_point1.id, parking_slot_id: parking_slot_m3.id, distance: 1.3)
-SlotEntrypoint.create(entry_point_id: entry_point2.id, parking_slot_id: parking_slot_m3.id, distance: 2.3)
-SlotEntrypoint.create(entry_point_id: entry_point3.id, parking_slot_id: parking_slot_m3.id, distance: 3.3)
+SlotEntrypoint.create(entry_point_id: entry_point2.id, parking_slot_id: parking_slot_l.id, distance: 2.43)
+SlotEntrypoint.create(entry_point_id: entry_point2.id, parking_slot_id: parking_slot_l2.id, distance: 1.42)
+SlotEntrypoint.create(entry_point_id: entry_point2.id, parking_slot_id: parking_slot_l3.id, distance: 3.75)
 
-SlotEntrypoint.create(entry_point_id: entry_point1.id, parking_slot_id: parking_slot_l3.id, distance: 1.3)
-SlotEntrypoint.create(entry_point_id: entry_point2.id, parking_slot_id: parking_slot_l3.id, distance: 2.3)
-SlotEntrypoint.create(entry_point_id: entry_point3.id, parking_slot_id: parking_slot_l3.id, distance: 3.3)
+SlotEntrypoint.create(entry_point_id: entry_point3.id, parking_slot_id: parking_slot_l.id, distance: 3.23)
+SlotEntrypoint.create(entry_point_id: entry_point3.id, parking_slot_id: parking_slot_l2.id, distance: 2.79)
+SlotEntrypoint.create(entry_point_id: entry_point3.id, parking_slot_id: parking_slot_l3.id, distance: 1.02)
+
+
+
+
+
+
+
+
+
+
+
+
 
 customer = Customer.create(vehicle_type_id: vehicle_type3.id, complete_name: 'Adam Smith', plate_number: 'APL-1207')
 Customer.create(vehicle_type_id: vehicle_type2.id, complete_name: 'Eva Hong', plate_number: 'EVH-0165')

@@ -4,7 +4,8 @@ class AdminApi::V1::SlotEntrypointsController < ApplicationController
 
   # GET /admin_api/v1/slot_entrypoints
   def index
-    @slot_entrypoints = SlotEntrypoint.all
+    @slot_entrypoints = SlotEntrypoint.includes(:entry_point, parking_slot: :parking_complex)
+    @slot_entrypoints = @slot_entrypoints.where(parking_complex: {name: params[:parking_complex]}) unless params[:parking_complex].blank?
   end
 
   # POST /admin_api/v1/slot_entrypoints

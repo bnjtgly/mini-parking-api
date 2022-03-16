@@ -17,9 +17,11 @@ class AdminApi::V1::UpdateInvoice
     @invoice = Invoice.where(customer_parking_id: context.customer_parking.id).load_async.first
     @customer = Invoice.where(customer_id: context.customer_parking.customer_id).load_async.last
     @customer_parking = CustomerParking.where(id: context.customer_parking.id).load_async.first
+    @parking_slot = ParkingSlot.where(id: @customer_parking.parking_slot.id).load_async.last
     @transaction_status = Entity.where(entity_number: 1401).load_async.first
     @ts_settled = @transaction_status.sub_entities.where(value_str: 'settled').first
     @ts_pending = @transaction_status.sub_entities.where(value_str: 'pending').first
+    @available = SubEntity.includes(:entity).where(value_str: 'available', entity: {entity_number: 1201}).first
   end
 
   def build
@@ -47,13 +49,13 @@ class AdminApi::V1::UpdateInvoice
       total_fee = full_rate(accumulated_hours, slot_price)
     end
 
-
     @invoice&.update(
       transaction_status_id: @ts_settled.id,
       is_flatrate_settled: true,
       parked_hours: parked_hours,
       parking_fee: total_fee
     )
+    @parking_slot.update(parking_slot_status_id: @available.id)
 
     context.invoice = @invoice
   end

@@ -17,11 +17,11 @@ class AdminApi::V1::CreateSlotEntrypoint
   def build
     @slot_entrypoint = SlotEntrypoint.new(payload)
 
-    ParkingSlot.transaction do
+    SlotEntrypoint.transaction do
       @slot_entrypoint.save
     end
 
-    context.slot_entrypoint = @parking_slot
+    context.slot_entrypoint = @slot_entrypoint
   end
 
   def validate!
