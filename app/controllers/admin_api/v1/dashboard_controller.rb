@@ -23,7 +23,7 @@ class AdminApi::V1::DashboardController < ApplicationController
     @today_earnings = @invoices.where(transaction_status_id: @transaction_status.id).sum(:parking_fee)
   end
 
-  def latest_parkings
+  def latest
     @customer_parkings = CustomerParking.all
   end
 end
