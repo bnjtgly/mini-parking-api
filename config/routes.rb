@@ -22,6 +22,7 @@ Rails.application.routes.draw do
       post 'customer_parkings/checkout', to: 'customer_parkings#checkout'
 
       get 'customer_parkings/find_parking/:customer_id', to: 'customer_parkings#find_parking'
+      get 'dashboard/latest', to: 'dashboard#latest'
     end
   end
 

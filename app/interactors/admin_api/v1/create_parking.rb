@@ -30,20 +30,18 @@ class AdminApi::V1::CreateParking
       @customer_parking_new = CustomerParking.new(customer_id: @customer_parking.customer_id,
                                               is_returnee: true,
                                               current_flat_rate: @customer_parking.current_flat_rate,
-                                              parking_slot_id: @customer_parking.parking_slot_id,
+                                              parking_slot_id: payload[:parking_slot_id],
                                               parking_status_id: @ps_parked.id,
                                               valid_from: @customer_parking.valid_from)
-      @parking_slot&.update(parking_slot_status_id: @not_available.id)
     else
       @customer_parking_new = CustomerParking.new(payload)
-      @parking_slot&.update(parking_slot_status_id: @not_available.id)
     end
 
     CustomerParking.transaction do
       @customer_parking_new.valid_from = payload[:valid_from] ? Time.zone.parse(payload[:valid_from]).utc : Time.now.utc
       @customer_parking_new.save
     end
-
+    @parking_slot&.update(parking_slot_status_id: @not_available.id)
 
     context.customer_parking = @customer_parking_new
   end

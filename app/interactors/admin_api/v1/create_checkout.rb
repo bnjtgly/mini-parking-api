@@ -12,7 +12,8 @@ class AdminApi::V1::CreateCheckout
 
   private
   def init
-    @customer_parking = CustomerParking.where(customer_id: data[:parking][:customer_id], valid_thru: nil).load_async.first
+    # @customer_parking = CustomerParking.where(customer_id: data[:parking][:customer_id], valid_thru: nil).load_async.first
+    @customer_parking = CustomerParking.where(customer_id: data[:parking][:customer_id]).order(created_at: :desc).load_async.first
     @slot_available = SubEntity.includes(:entity).where(value_str: 'available', entity: {entity_number: 1201}).first
     context.fail!(error: { message: ['Please try again. Record not found.'] }) unless @customer_parking
   end
