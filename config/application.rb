@@ -13,6 +13,7 @@ module MiniParkingApi
 
     config.eager_load_paths << Rails.root.join('lib')
     config.autoload_paths << Rails.root.join('lib')
+    config.autoload_paths += Dir[Rails.root.join('app', 'queries', '{*/}')]
 
     # Configuration for the application, engines, and railties goes here.
     #
