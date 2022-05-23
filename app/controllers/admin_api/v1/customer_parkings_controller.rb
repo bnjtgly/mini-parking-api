@@ -13,16 +13,12 @@ class AdminApi::V1::CustomerParkingsController < ApplicationController
     unless params[:entry_point].blank? || params[:parking_complex].blank?
       @available_status = SubEntity.where(value_str: 'available').first
       @customer_vehicle_type = @customer.vehicle_type_ref.sort_order.to_i
-      @available_slots = ParkingSlot.joins(slot_entrypoints: :entry_point)
-                                    .where(parking_complex_id: params[:parking_complex], entry_point: { name: params[:entry_point] })
-                                    .joins('join sub_entities on parking_slots.parking_slot_type_id = sub_entities.id')
-                                    .where(sub_entities: { sort_order: @customer_vehicle_type..Float::INFINITY })
-                                    .where(parking_slot_status_id: @available_status.id)
-                                    .order('slot_entrypoints.distance').first
+      @available_slots = AdminApi::ParkingQuery.new(@available_status, @customer_vehicle_type).call
       @slot_price = @available_slots.parking_slot_type_ref.metadata.to_h if @available_slots
-      @slot_price = @slot_price['price'].to_f if @slot_price
+      @slot_price = @slot_price['price'].to_f
       @entry_point_distance = @available_slots.slot_entrypoints.first.distance
     end
+
     if params[:entry_point].blank? || params[:parking_complex].blank?
       render json: { error: 'Please verify the Parking Complex and Entry point.' }
     else
